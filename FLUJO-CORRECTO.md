@@ -32,9 +32,9 @@ El flujo correcto es:
    - **Node version:** `20`
 7. Haz clic en **Save and Deploy**
 
-**Resultado:** Cloudflare crea automáticamente `https://perritossinhogar.pages.dev`
+**Resultado:** Cloudflare crea automáticamente `https://perritossinhogar.pages.dev` cuando despliegas el proyecto.
 
-✅ **Ya tienes tu sitio funcionando en perritossinhogar.pages.dev**
+✅ **Una vez desplegado, tu sitio funcionará en perritossinhogar.pages.dev**
 
 ---
 
@@ -46,7 +46,7 @@ Si los nameservers aún no se han propagado (dominio no está "Active" en Cloudf
 - Verifica en Cloudflare Dashboard que el dominio esté "Active"
 - Puedes verificar en: https://www.whatsmydns.net/#NS/perritossinhogar.cl
 
-**Mientras tanto:** Tu sitio ya funciona en `perritossinhogar.pages.dev`
+**Mientras tanto:** Una vez que despliegues en Cloudflare Pages, tu sitio funcionará en `perritossinhogar.pages.dev`
 
 ---
 
@@ -61,7 +61,7 @@ Una vez que el dominio esté "Active" en Cloudflare:
 4. **Agregar CNAME para dominio raíz:**
    - **Type:** `CNAME`
    - **Name:** `@` (o deja en blanco)
-   - **Target:** `perritossinhogar.pages.dev` ← **Este ya existe desde el Paso 1**
+   - **Target:** `perritossinhogar.pages.dev` ← **Este se crea cuando despliegas en Cloudflare Pages (Paso 1)**
    - **Proxy status:** Proxied (nube NARANJA) ✅
    - Guarda
 
@@ -153,10 +153,11 @@ perritossinhogar.cl ← Funciona aquí con SSL
 
 ## ⚠️ Puntos Importantes
 
-1. **perritossinhogar.pages.dev se crea automáticamente** cuando despliegas en Cloudflare Pages
-2. **No necesitas crear nada manualmente** - Cloudflare lo hace por ti
-3. **El dominio personalizado es opcional** - puedes usar solo .pages.dev si quieres
-4. **El SSL se configura automáticamente** cuando agregas el dominio personalizado
+1. **perritossinhogar.pages.dev NO existe hasta que despliegues** el proyecto en Cloudflare Pages
+2. **Primero debes desplegar en Cloudflare Pages** para que se cree el dominio .pages.dev
+3. **Luego puedes configurar el DNS** apuntando a ese dominio .pages.dev
+4. **El dominio personalizado es opcional** - puedes usar solo .pages.dev si quieres
+5. **El SSL se configura automáticamente** cuando agregas el dominio personalizado
 
 ---
 
@@ -170,5 +171,10 @@ Puedes desplegar en Cloudflare Pages **ahora mismo**, incluso si los nameservers
 
 **Pregunta:** ¿Debo publicar primero en GitHub Pages?
 
-**Respuesta:** NO. Ve directamente a Cloudflare Pages. El sitio funcionará en `perritossinhogar.pages.dev` automáticamente, y luego puedes configurar el dominio personalizado cuando el DNS esté listo.
+**Respuesta:** NO. Ve directamente a Cloudflare Pages. **Primero despliega en Cloudflare Pages** para crear `perritossinhogar.pages.dev`, y luego puedes configurar el dominio personalizado cuando el DNS esté listo.
+
+**Orden correcto:**
+1. Desplegar en Cloudflare Pages → Crea `perritossinhogar.pages.dev`
+2. Configurar DNS → CNAME apuntando a `perritossinhogar.pages.dev`
+3. Agregar dominio personalizado → `perritossinhogar.cl`
 
