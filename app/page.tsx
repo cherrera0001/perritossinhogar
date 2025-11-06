@@ -12,7 +12,7 @@ import { FinalCTA } from "@/components/landing/final-cta"
 import { Footer } from "@/components/landing/footer"
 
 export const metadata: Metadata = {
-  title: "Perritos Sin Hogar: adopta, dona y cambia vidas",
+  title: "Adopta, dona y cambia vidas",
   description:
     "Rescatamos perros y los conectamos con familias. Dona por WhatsApp (+56955338899) o escríbenos a hola@perritossinhogar.cl.",
   keywords: ["adopción perros", "rescate animal", "donaciones", "perros Chile", "adoptar mascota"],

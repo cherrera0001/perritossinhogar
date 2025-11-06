@@ -4,11 +4,24 @@ import { Geist, Geist_Mono } from "next/font/google"
 import { AnalyticsWrapper } from "@/components/analytics-wrapper"
 import "./globals.css"
 
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
+const geist = Geist({ 
+  subsets: ["latin"],
+  variable: "--font-geist",
+  display: "swap",
+})
+
+const geistMono = Geist_Mono({ 
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
+})
 
 export const metadata: Metadata = {
-  title: "Perritos Sin Hogar",
+  metadataBase: new URL('https://perritossinhogar.cl'),
+  title: {
+    default: "Perritos Sin Hogar",
+    template: "%s | Perritos Sin Hogar"
+  },
   description: "Rescatamos perros y los conectamos con familias",
   generator: "v0.app",
 }
@@ -20,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es-CL">
-      <body className={`font-sans antialiased`}>
+      <body className={`${geist.variable} ${geistMono.variable} font-sans antialiased`}>
         {children}
         <AnalyticsWrapper />
       </body>

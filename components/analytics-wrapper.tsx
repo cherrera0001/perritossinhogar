@@ -12,8 +12,12 @@ export function AnalyticsWrapper() {
         .then((mod) => {
           setAnalytics(() => mod.Analytics)
         })
-        .catch(() => {
-          // Analytics no disponible, continuar sin él
+        .catch((error) => {
+          // Log error pero no romper la app
+          if (process.env.NODE_ENV === 'development') {
+            // eslint-disable-next-line no-console
+            console.warn('Failed to load Vercel Analytics:', error)
+          }
         })
     }
   }, [])
