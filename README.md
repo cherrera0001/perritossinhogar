@@ -21,6 +21,8 @@ pnpm start
 ## Despliegue
 
 - **[CONFIGURACION-SIN-DNS-NIC.md](./CONFIGURACION-SIN-DNS-NIC.md)** ⭐ **LEE ESTO PRIMERO** - Guía específica si solo tienes el dominio en nic.cl sin DNS
+- **[GITHUB-PAGES-CLOUDFLARE.md](./GITHUB-PAGES-CLOUDFLARE.md)** ⚠️ **IMPORTANTE** - Cómo configurar GitHub Pages con Cloudflare DNS (registros A)
+- **[PROXIMOS-PASOS.md](./PROXIMOS-PASOS.md)** - Qué hacer después de cambiar nameservers
 - **[DEPLOY.md](./DEPLOY.md)** - Guía completa de despliegue en GitHub Pages y Cloudflare Pages
 - **[CONFIGURACION-DNS.md](./CONFIGURACION-DNS.md)** - Guía detallada para configurar DNS con nic.cl y Cloudflare
 - **[GUIA-RAPIDA-DNS.md](./GUIA-RAPIDA-DNS.md)** - Guía rápida paso a paso para configurar el dominio
