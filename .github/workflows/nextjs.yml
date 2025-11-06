@@ -1,30 +1,31 @@
 name: Desplegar en GitHub Pages
 
 on:
+  # Se ejecuta en pushes a la rama main
   push:
     branches: ["main"]
+  
+  # Permite ejecutar manualmente desde la pestaña Actions
   workflow_dispatch:
 
+# Permisos para desplegar en GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# Permitir solo un despliegue concurrente
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
+  # Job de construcción
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Instalar pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 8
 
       - name: Configurar Node.js
         uses: actions/setup-node@v4
@@ -33,17 +34,25 @@ jobs:
           cache: "pnpm"
           cache-dependency-path: "code/pnpm-lock.yaml"
 
+      - name: Instalar pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
       - name: Configurar Pages
         uses: actions/configure-pages@v5
         with:
+          # Configura automáticamente basePath y desactiva optimización de imágenes
           static_site_generator: next
 
-      - name: Restaurar cache de Next.js
+      - name: Restaurar cache
         uses: actions/cache@v4
         with:
           path: |
             code/.next/cache
+          # Genera nuevo cache cuando cambian paquetes o archivos fuente
           key: ${{ runner.os }}-nextjs-${{ hashFiles('code/pnpm-lock.yaml') }}-${{ hashFiles('code/**.[jt]s', 'code/**.[jt]sx') }}
+          # Si cambian archivos fuente pero no paquetes, reconstruye desde cache anterior
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('code/pnpm-lock.yaml') }}-
 
@@ -63,6 +72,7 @@ jobs:
         with:
           path: ./code/out
 
+  # Job de despliegue
   deploy:
     environment:
       name: github-pages
