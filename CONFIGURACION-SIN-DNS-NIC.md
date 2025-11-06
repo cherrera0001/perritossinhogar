@@ -30,23 +30,25 @@ Como no tienes DNS en nic.cl, **DEBES** usar Cloudflare para manejar el DNS.
 
 #### 1.3 Obtener los Nameservers de Cloudflare
 
-Cloudflare te mostrará 2 nameservers, por ejemplo:
+Cloudflare te mostrará 2 nameservers. En tu caso son:
 ```
-alice.ns.cloudflare.com
-bob.ns.cloudflare.com
+leland.ns.cloudflare.com
+zainab.ns.cloudflare.com
 ```
 
-**IMPORTANTE:** Anota estos nameservers, los necesitarás en el siguiente paso.
+**IMPORTANTE:** Ya tienes estos nameservers. Procede al siguiente paso.
 
 #### 1.4 Cambiar Nameservers en nic.cl
 
 1. Inicia sesión en https://www.nic.cl
 2. Ve a la administración de tu dominio `perritossinhogar.cl`
 3. Busca la sección **"Nameservers"** o **"Servidores de nombres"** o **"DNS"**
-4. Reemplaza los nameservers actuales con los 2 que te dio Cloudflare:
-   - Nameserver 1: `alice.ns.cloudflare.com` (o el primero que te dio)
-   - Nameserver 2: `bob.ns.cloudflare.com` (o el segundo que te dio)
+4. Reemplaza los nameservers actuales con estos:
+   - **Nameserver 1:** `leland.ns.cloudflare.com`
+   - **Nameserver 2:** `zainab.ns.cloudflare.com`
 5. Guarda los cambios
+
+**💡 TIP:** Si no encuentras la opción, busca en diferentes secciones como "Configuración", "Zona DNS", o "Servidores DNS". Si aún no la encuentras, contacta soporte de nic.cl.
 
 #### 1.5 Esperar la propagación
 
