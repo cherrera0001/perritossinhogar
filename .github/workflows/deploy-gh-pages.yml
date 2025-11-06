@@ -2,8 +2,7 @@ name: Desplegar en GitHub Pages
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -22,32 +21,47 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Configurar Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'pnpm'
-
       - name: Instalar pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 8
 
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+          cache-dependency-path: "code/pnpm-lock.yaml"
+
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+        with:
+          static_site_generator: next
+
+      - name: Restaurar cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            code/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('code/pnpm-lock.yaml') }}-${{ hashFiles('code/**.[jt]s', 'code/**.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('code/pnpm-lock.yaml') }}-
+
       - name: Instalar dependencias
         working-directory: ./code
         run: pnpm install --frozen-lockfile
 
-      - name: Construir sitio estático
+      - name: Construir con Next.js
         working-directory: ./code
         env:
           EXPORT_STATIC: 'true'
           BASE_PATH: ''
         run: pnpm build
 
-      - name: Subir artefactos
+      - name: Subir artefacto
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './code/out'
+          path: ./code/out
 
   deploy:
     environment:
@@ -59,4 +73,3 @@ jobs:
       - name: Desplegar en GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
