@@ -39,16 +39,20 @@ Esta guía explica cómo desplegar el sitio web en GitHub Pages y/o Cloudflare P
 
 ### Configuración DNS para GitHub Pages
 
+**IMPORTANTE:** Para instrucciones detalladas sobre cómo configurar DNS con nic.cl y Cloudflare, consulta [CONFIGURACION-DNS.md](./CONFIGURACION-DNS.md)
+
+**Resumen rápido:**
+
 En tu proveedor de DNS (donde está registrado perritossinhogar.cl), agrega:
 
-- **Tipo A:**
+- **Tipo A (para dominio raíz):**
   - `185.199.108.153`
   - `185.199.109.153`
   - `185.199.110.153`
   - `185.199.111.153`
 
 - **Tipo CNAME (opcional, para www):**
-  - `www` → `TU_USUARIO.github.io`
+  - `www` → `cherrera0001.github.io`
 
 ## Opción 2: Desplegar en Cloudflare Pages
 
@@ -110,20 +114,29 @@ En tu proveedor de DNS (donde está registrado perritossinhogar.cl), agrega:
 
 ### Configuración DNS para Cloudflare Pages
 
-1. **En Cloudflare Dashboard:**
+**IMPORTANTE:** Para instrucciones detalladas sobre cómo configurar DNS con nic.cl y Cloudflare, consulta [CONFIGURACION-DNS.md](./CONFIGURACION-DNS.md)
+
+**Resumen rápido:**
+
+1. **Primero, configura Cloudflare DNS para tu dominio:**
+   - Agrega tu sitio en Cloudflare Dashboard
+   - Cambia los nameservers en nic.cl a los de Cloudflare
+   - Espera la propagación (24-48 horas)
+
+2. **Luego, en Cloudflare Dashboard:**
    - Ve a **DNS** > **Records**
    - Agrega un registro **CNAME:**
      - **Name:** `@` (o deja en blanco para el dominio raíz)
      - **Target:** `perritossinhogar.pages.dev`
      - **Proxy status:** Proxied (naranja)
 
-2. **Para www (opcional):**
+3. **Para www (opcional):**
    - Agrega otro registro **CNAME:**
      - **Name:** `www`
      - **Target:** `perritossinhogar.pages.dev`
      - **Proxy status:** Proxied (naranja)
 
-3. **Configurar dominio personalizado en Pages:**
+4. **Configurar dominio personalizado en Pages:**
    - Ve a tu proyecto en Cloudflare Pages
    - Ve a **Custom domains**
    - Agrega `perritossinhogar.cl` y `www.perritossinhogar.cl`
