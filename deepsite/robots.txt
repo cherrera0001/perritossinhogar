@@ -1,0 +1,11 @@
+# robots.txt para Perritos Sin Hogar
+# Permitir indexación completa
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://perritossinhogar.cl/sitemap.xml
+
+# Disallow ninguna página - permitir todo
+

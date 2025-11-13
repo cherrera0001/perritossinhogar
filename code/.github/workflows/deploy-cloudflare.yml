@@ -1,0 +1,44 @@
+name: Desplegar en Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Instalar pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
+      - name: Instalar dependencias
+        working-directory: ./code
+        run: pnpm install --frozen-lockfile
+
+      - name: Construir proyecto
+        working-directory: ./code
+        run: pnpm build
+
+      - name: Desplegar en Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: perritossinhogar
+          directory: code
+          # Cloudflare Pages detecta Next.js automáticamente
+          wranglerVersion: '3'
+
