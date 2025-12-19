@@ -1,0 +1,167 @@
+name: Security Audit
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Ejecutar diariamente a las 4 AM (Chile)
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+
+jobs:
+  # Auditoría de dependencias
+  dependency-audit:
+    name: Dependency Security Audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Instalar pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Instalar dependencias
+        working-directory: ./code
+        run: pnpm install --frozen-lockfile
+
+      - name: Ejecutar auditoría de seguridad
+        working-directory: ./code
+        run: |
+          echo "Ejecutando auditoría de dependencias..."
+          pnpm audit --audit-level=moderate --json > audit-results.json || true
+          
+          # Verificar si hay vulnerabilidades
+          if [ -s audit-results.json ]; then
+            VULN_COUNT=$(pnpm audit --audit-level=moderate --json | jq '.metadata.vulnerabilities.total // 0')
+            if [ "$VULN_COUNT" -gt 0 ]; then
+              echo "⚠️ Se encontraron $VULN_COUNT vulnerabilidades"
+              pnpm audit --audit-level=moderate
+              exit 1
+            else
+              echo "✅ No se encontraron vulnerabilidades"
+            fi
+          fi
+
+      - name: Subir resultados de auditoría
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-audit-results
+          path: code/audit-results.json
+          retention-days: 30
+
+  # Escaneo de secretos
+  secret-scanning:
+    name: Secret Scanning
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Escanear secretos con Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          config-path: .gitleaks.toml
+          no-git: false
+          verbose: true
+
+  # Verificación de código con CodeQL (si está habilitado)
+  codeql-analysis:
+    name: CodeQL Analysis
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript,typescript
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+  # Verificación de vulnerabilidades conocidas
+  vulnerability-check:
+    name: Known Vulnerability Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Instalar pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Instalar dependencias
+        working-directory: ./code
+        run: pnpm install --frozen-lockfile
+
+      - name: Verificar versiones vulnerables conocidas
+        working-directory: ./code
+        run: |
+          echo "Verificando versiones vulnerables conocidas..."
+          
+          # Verificar React2Shell (CVE-2025-55182, CVE-2025-66478)
+          NEXT_VERSION=$(node -p "require('./package.json').dependencies.next")
+          REACT_VERSION=$(node -p "require('./package.json').dependencies.react")
+          REACT_DOM_VERSION=$(node -p "require('./package.json').dependencies['react-dom']")
+          
+          echo "Next.js: $NEXT_VERSION"
+          echo "React: $REACT_VERSION"
+          echo "React DOM: $REACT_DOM_VERSION"
+          
+          # Verificar que las versiones sean seguras
+          if [[ "$NEXT_VERSION" == "16.0.0" ]] || [[ "$NEXT_VERSION" < "16.0.7" ]]; then
+            echo "❌ Next.js versión vulnerable detectada: $NEXT_VERSION"
+            echo "   Requiere actualización a 16.0.7 o superior"
+            exit 1
+          fi
+          
+          if [[ "$REACT_VERSION" == "19.2.0" ]] || [[ "$REACT_VERSION" < "19.2.1" ]]; then
+            echo "❌ React versión vulnerable detectada: $REACT_VERSION"
+            echo "   Requiere actualización a 19.2.1 o superior"
+            exit 1
+          fi
+          
+          if [[ "$REACT_DOM_VERSION" == "19.2.0" ]] || [[ "$REACT_DOM_VERSION" < "19.2.1" ]]; then
+            echo "❌ React DOM versión vulnerable detectada: $REACT_DOM_VERSION"
+            echo "   Requiere actualización a 19.2.1 o superior"
+            exit 1
+          fi
+          
+          echo "✅ Todas las versiones son seguras"
+

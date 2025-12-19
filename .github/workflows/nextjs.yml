@@ -13,6 +13,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  security-events: read
 
 # Permitir solo un despliegue concurrente
 concurrency:
@@ -64,9 +65,23 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('code/pnpm-lock.yaml') }}-
 
+      - name: Verificar vulnerabilidades antes de construir
+        working-directory: ./code
+        run: |
+          echo "Verificando vulnerabilidades críticas..."
+          pnpm audit --audit-level=high || {
+            echo "⚠️ Se encontraron vulnerabilidades de alta severidad"
+            echo "Revisa los resultados y corrige antes de continuar"
+            exit 1
+          }
+
       - name: Instalar dependencias
         working-directory: ./code
         run: pnpm install --frozen-lockfile
+
+      - name: Ejecutar linter
+        working-directory: ./code
+        run: pnpm lint || echo "⚠️ Linter encontró problemas, pero continuando..."
 
       - name: Construir con Next.js
         working-directory: ./code

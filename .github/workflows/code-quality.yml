@@ -1,0 +1,119 @@
+name: Code Quality Checks
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  lint:
+    name: Lint Code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Instalar pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Instalar dependencias
+        working-directory: ./code
+        run: pnpm install --frozen-lockfile
+
+      - name: Ejecutar ESLint
+        working-directory: ./code
+        run: pnpm lint
+
+      - name: Verificar tipos de TypeScript
+        working-directory: ./code
+        run: |
+          pnpm exec tsc --noEmit || {
+            echo "❌ Errores de TypeScript encontrados"
+            echo "Corrige los errores antes de hacer merge"
+            exit 1
+          }
+
+  format-check:
+    name: Check Code Formatting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Instalar pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Instalar dependencias
+        working-directory: ./code
+        run: pnpm install --frozen-lockfile
+
+      - name: Verificar formato (si hay Prettier configurado)
+        working-directory: ./code
+        run: |
+          if [ -f ".prettierrc" ] || [ -f "prettier.config.js" ]; then
+            echo "Verificando formato con Prettier..."
+            pnpm exec prettier --check . || {
+              echo "⚠️ Problemas de formato detectados"
+              echo "Ejecuta 'pnpm format' para corregirlos"
+            }
+          else
+            echo "Prettier no configurado, saltando verificación de formato"
+          fi
+
+  build-check:
+    name: Verify Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Instalar pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Instalar dependencias
+        working-directory: ./code
+        run: pnpm install --frozen-lockfile
+
+      - name: Verificar que el proyecto compila
+        working-directory: ./code
+        env:
+          EXPORT_STATIC: 'true'
+          BASE_PATH: ''
+        run: |
+          echo "Verificando compilación..."
+          pnpm build || {
+            echo "❌ Error al compilar el proyecto"
+            exit 1
+          }
+          echo "✅ Compilación exitosa"
+

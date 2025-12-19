@@ -18,10 +18,24 @@ dist/
 
 # Environment variables
 .env
+.env.*
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+!.env.example
+!.env.template
+
+# Secrets y credenciales
+*.pem
+*.key
+*.cert
+*.p12
+*.pfx
+secrets/
+credentials/
+*.secret
+.secrets
 
 # Vercel
 .vercel
@@ -39,11 +53,22 @@ Thumbs.db
 
 # Archivos comprimidos temporales
 *.zip
+code.zip
 
 # PDFs grandes (si no son necesarios en el repo)
-# owasp-top-10.pdf
+*.pdf
+owasp-top-10.pdf
+
+# Carpetas de versiones antiguas
+deepsite/
 
 # Cache
 .cache/
 .parcel-cache/
+.turbo/
+
+# Security
+audit-results.json
+*.log
+security-audit-results/
 

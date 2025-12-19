@@ -1,0 +1,50 @@
+version: 2
+updates:
+  # Habilitar actualizaciones para dependencias de npm/pnpm
+  - package-ecosystem: "npm"
+    directory: "/code"
+    schedule:
+      interval: "daily"
+      time: "04:00"
+      timezone: "America/Santiago"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "cherrera0001"
+    labels:
+      - "dependencies"
+      - "security"
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore"
+      include: "scope"
+    # Priorizar actualizaciones de seguridad
+    groups:
+      security-updates:
+        patterns:
+          - "*"
+        update-types:
+          - "security"
+    # Ignorar actualizaciones mayores automáticamente (requieren revisión manual)
+    ignore:
+      - dependency-name: "next"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major"]
+  
+  # Habilitar actualizaciones para GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "America/Santiago"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "cherrera0001"
+    labels:
+      - "github-actions"
+      - "dependencies"
+

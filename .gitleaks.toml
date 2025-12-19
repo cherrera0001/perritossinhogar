@@ -1,0 +1,23 @@
+title = "Gitleaks Configuration for Perritos Sin Hogar"
+
+[extend]
+# Usar configuración predeterminada
+useDefault = true
+
+[allowlist]
+description = "Allowlist para falsos positivos conocidos"
+paths = [
+    '''\.md$''',
+    '''SECURITY-FIX-REACT2SHELL\.md''',
+    '''VERIFICACION-PR-VERCEL\.md''',
+]
+
+# Patrones específicos a ignorar (si son falsos positivos)
+regexes = [
+    '''example\.com''',
+    '''test@example\.com''',
+]
+
+[rules]
+# Reglas personalizadas adicionales si es necesario
+

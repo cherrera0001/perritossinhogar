@@ -20,9 +20,6 @@ pnpm start
 
 ## Despliegue
 
-- **[VERCEL-DESPLIEGUE.md](./VERCEL-DESPLIEGUE.md)** ⭐ **SI YA ESTÁS EN VERCEL** - Cómo conectar perritossinhogar.cl a tu sitio en Vercel
-- **[FLUJO-CORRECTO.md](./FLUJO-CORRECTO.md)** ⭐ **PARA CLOUDFLARE PAGES** - Guía completa del flujo correcto: Cloudflare Pages directamente
-
 ### Despliegue Rápido en Cloudflare Pages (Recomendado)
 
 1. Conecta tu repositorio de GitHub a Cloudflare Pages
