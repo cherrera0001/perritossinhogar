@@ -1,9 +1,9 @@
 {
-  "buildCommand": "cd code && pnpm install && pnpm build",
+  "buildCommand": "cd code && npm install && npm run build",
   "outputDirectory": "code/.next",
   "framework": "nextjs",
-  "installCommand": "cd code && corepack enable && corepack prepare pnpm@9.15.0 --activate && pnpm install",
-  "devCommand": "cd code && pnpm dev",
+  "installCommand": "cd code && npm install",
+  "devCommand": "cd code && npm run dev",
   "headers": [
     {
       "source": "/(.*)",
