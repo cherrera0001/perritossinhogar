@@ -5,6 +5,7 @@
   "author": "Perritos Sin Hogar",
   "license": "MIT",
   "private": true,
+  "packageManager": "pnpm@9.15.0",
   "scripts": {
     "build": "next build",
     "dev": "next dev",

@@ -2,7 +2,7 @@
   "buildCommand": "cd code && pnpm install && pnpm build",
   "outputDirectory": "code/.next",
   "framework": "nextjs",
-  "installCommand": "cd code && pnpm install",
+  "installCommand": "cd code && corepack enable && corepack prepare pnpm@9.15.0 --activate && pnpm install",
   "devCommand": "cd code && pnpm dev",
   "headers": [
     {
