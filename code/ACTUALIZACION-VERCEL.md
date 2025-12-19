@@ -26,9 +26,14 @@ Vercel detectó que el proyecto tenía dependencias vulnerables sin parchear rel
 - **Estado**: ✅ Corregido
 
 #### CVE-2025-55184 (DoS)
-- **Severidad**: Media
-- **Descripción**: Denegación de servicio
-- **Estado**: ✅ Corregido
+- **Severidad**: Alta
+- **Descripción**: Denegación de servicio - solicitud HTTP especialmente diseñada puede causar un bucle infinito
+- **Estado**: ✅ Corregido (fix completo en CVE-2025-67779)
+
+#### CVE-2025-67779 (DoS Fix Completo)
+- **Severidad**: Alta
+- **Descripción**: Fix completo para CVE-2025-55184 (el fix inicial fue incompleto)
+- **Estado**: ✅ Corregido en Next.js 16.0.10
 
 ## Versiones Actualizadas
 
@@ -90,10 +95,25 @@ Debería mostrar:
    - Si la aplicación estuvo online y sin parchear antes del 4 de diciembre de 2025, rotar todos los secretos
    - Empezar con los más críticos
 
+## Actualización del 11 de Diciembre de 2025
+
+Se identificaron dos vulnerabilidades adicionales mientras los investigadores de seguridad examinaban los parches para React2Shell:
+
+1. **CVE-2025-55184 (DoS)** - Alta severidad
+   - Solicitud HTTP especialmente diseñada puede causar bucle infinito
+   - El fix inicial fue incompleto, se emitió CVE-2025-67779 como fix completo
+
+2. **CVE-2025-55183 (Source Code Exposure)** - Media severidad
+   - Puede exponer código fuente compilado de Server Functions
+   - Podría revelar lógica de negocio y secretos si están definidos directamente en el código
+
+**Importante**: Next.js 16.0.10 incluye todos los fixes, incluyendo CVE-2025-67779.
+
 ## Referencias
 
 - [Vercel Security Bulletin](https://vercel.com/security/react2shell)
-- [Next.js Security Advisory](https://nextjs.org/blog/CVE-2025-66478)
+- [Next.js Security Advisory - Dec 11, 2025](https://nextjs.org/blog/security-release-dec-11-2025)
+- [Next.js Security Advisory - Dec 4, 2025](https://nextjs.org/blog/CVE-2025-66478)
 - [React Security Advisory](https://react.dev/blog/2025/12/04/react-security-update)
 
 ## Estado Final

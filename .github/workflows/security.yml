@@ -145,11 +145,16 @@ jobs:
           echo "React DOM: $REACT_DOM_VERSION"
           
           # Verificar que las versiones sean seguras
-          # Next.js 16.0.x requiere 16.0.10 o superior (según Vercel Security Bulletin)
+          # Next.js 16.0.x requiere 16.0.10 o superior (según Next.js Security Update Dec 11, 2025)
+          # Corrige: CVE-2025-55182, CVE-2025-66478, CVE-2025-55183, CVE-2025-55184, CVE-2025-67779
           if [[ "$NEXT_VERSION" == "16.0.0" ]] || [[ "$NEXT_VERSION" < "16.0.10" ]]; then
             echo "❌ Next.js versión vulnerable detectada: $NEXT_VERSION"
             echo "   Requiere actualización a 16.0.10 o superior"
-            echo "   CVE-2025-55182, CVE-2025-66478, CVE-2025-55183, CVE-2025-55184"
+            echo "   CVE-2025-55182 (React2Shell RCE)"
+            echo "   CVE-2025-66478 (Next.js RCE)"
+            echo "   CVE-2025-55183 (Source Code Exposure)"
+            echo "   CVE-2025-55184 (DoS - fix incompleto)"
+            echo "   CVE-2025-67779 (DoS - fix completo)"
             exit 1
           fi
           
