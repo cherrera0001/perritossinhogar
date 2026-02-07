@@ -1,5 +1,5 @@
 {
-  "buildCommand": "cd code && npm install && npm run build",
+  "buildCommand": "cd code && npm run build",
   "outputDirectory": "code/.next",
   "framework": "nextjs",
   "installCommand": "cd code && npm install",
@@ -50,4 +50,3 @@
     }
   ]
 }
-
