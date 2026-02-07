@@ -34,6 +34,7 @@ jobs:
         with:
           node-version: "20"
           cache: "pnpm"
+          cache-dependency-path: './code/pnpm-lock.yaml'
 
       - name: Instalar dependencias
         working-directory: ./code
@@ -62,7 +63,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: security-audit-results
-          path: code/audit-results.json
+          path: ./code/audit-results.json
           retention-days: 30
 
   # Escaneo de secretos
@@ -79,10 +80,7 @@ jobs:
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          config-path: .gitleaks.toml
-          no-git: false
-          verbose: true
+          GITLEAKS_CONFIG: .gitleaks.toml
 
   # Verificación de código con CodeQL (si está habilitado)
   codeql-analysis:
@@ -125,6 +123,7 @@ jobs:
         with:
           node-version: "20"
           cache: "pnpm"
+          cache-dependency-path: './code/pnpm-lock.yaml'
 
       - name: Instalar dependencias
         working-directory: ./code
