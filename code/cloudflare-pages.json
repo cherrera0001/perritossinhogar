@@ -1,7 +1,0 @@
-{
-  "buildCommand": "cd code && pnpm install && pnpm build",
-  "outputDirectory": "code/.next",
-  "framework": "nextjs",
-  "nodeVersion": "20"
-}
-

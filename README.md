@@ -1,6 +1,6 @@
 # Perritos Sin Hogar
 
-Sitio web oficial para adopcion y rescate de perros en Chile. La app vive en el directorio `code/`.
+Sitio web oficial para adopcion y rescate de perros en Chile.
 
 ## ES - Proposito
 
@@ -11,14 +11,17 @@ Sitio web oficial para adopcion y rescate de perros en Chile. La app vive en el 
 ## ES - Estructura
 
 ```
-code/              # App Next.js (produccion)
+app/               # App Router de Next.js
+components/        # Componentes React
+hooks/             # Hooks reutilizables
+lib/               # Utilidades y helpers
+public/            # Archivos estaticos
 vercel.json        # Configuracion de despliegue
 ```
 
 ## ES - Desarrollo
 
 ```bash
-cd code
 pnpm install
 pnpm dev
 ```
@@ -42,19 +45,22 @@ El sitio incluye un selector de idioma via GTranslate (traduccion automatica) pa
 
 ## EN - Purpose
 
-Official website for dog adoption and rescue in Chile. The app lives in `code/`.
+Official website for dog adoption and rescue in Chile.
 
 ## EN - Structure
 
 ```
-code/              # Next.js app (production)
+app/               # Next.js App Router
+components/        # React components
+hooks/             # Reusable hooks
+lib/               # Utilities and helpers
+public/            # Static assets
 vercel.json        # Deployment config
 ```
 
 ## EN - Local Development
 
 ```bash
-cd code
 pnpm install
 pnpm dev
 ```

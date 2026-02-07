@@ -29,18 +29,15 @@ jobs:
         with:
           node-version: "20"
           cache: "pnpm"
-          cache-dependency-path: './code/pnpm-lock.yaml'
+          cache-dependency-path: './pnpm-lock.yaml'
 
       - name: Instalar dependencias
-        working-directory: ./code
         run: pnpm install --frozen-lockfile
 
       - name: Ejecutar ESLint
-        working-directory: ./code
         run: pnpm lint
 
       - name: Verificar tipos de TypeScript
-        working-directory: ./code
         run: |
           pnpm exec tsc --noEmit || {
             echo "❌ Errores de TypeScript encontrados"
@@ -65,14 +62,12 @@ jobs:
         with:
           node-version: "20"
           cache: "pnpm"
-          cache-dependency-path: './code/pnpm-lock.yaml'
+          cache-dependency-path: './pnpm-lock.yaml'
 
       - name: Instalar dependencias
-        working-directory: ./code
         run: pnpm install --frozen-lockfile
 
       - name: Verificar formato (si hay Prettier configurado)
-        working-directory: ./code
         run: |
           if [ -f ".prettierrc" ] || [ -f "prettier.config.js" ]; then
             echo "Verificando formato con Prettier..."
@@ -101,14 +96,12 @@ jobs:
         with:
           node-version: "20"
           cache: "pnpm"
-          cache-dependency-path: './code/pnpm-lock.yaml'
+          cache-dependency-path: './pnpm-lock.yaml'
 
       - name: Instalar dependencias
-        working-directory: ./code
         run: pnpm install --frozen-lockfile
 
       - name: Verificar que el proyecto compila
-        working-directory: ./code
         env:
           EXPORT_STATIC: 'true'
           BASE_PATH: ''

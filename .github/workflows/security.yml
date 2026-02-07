@@ -34,7 +34,7 @@ jobs:
         with:
           node-version: "20"
           cache: "pnpm"
-          cache-dependency-path: "code/pnpm-lock.yaml"
+          cache-dependency-path: "pnpm-lock.yaml"
 
       - name: Instalar jq
         run: |
@@ -42,11 +42,9 @@ jobs:
           sudo apt-get install -y jq
 
       - name: Instalar dependencias
-        working-directory: ./code
         run: pnpm install --frozen-lockfile
 
       - name: Ejecutar auditoría de seguridad
-        working-directory: ./code
         run: |
           echo "Ejecutando auditoría de dependencias..."
           pnpm audit --audit-level=moderate --json > audit-results.json || true
@@ -68,7 +66,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: security-audit-results
-          path: code/audit-results.json
+          path: audit-results.json
           retention-days: 30
 
   # Escaneo de secretos
@@ -127,14 +125,12 @@ jobs:
         with:
           node-version: "20"
           cache: "pnpm"
-          cache-dependency-path: "code/pnpm-lock.yaml"
+          cache-dependency-path: "pnpm-lock.yaml"
 
       - name: Instalar dependencias
-        working-directory: ./code
         run: pnpm install --frozen-lockfile
 
       - name: Verificar versiones vulnerables conocidas
-        working-directory: ./code
         run: |
           echo "Verificando versiones vulnerables conocidas..."
           
