@@ -1,1 +1,7 @@
-{\n  "buildCommand": "cd code && npm run build",\n  "installCommand": "cd code && npm install",\n  "devCommand": "cd code && npm run dev",\n  "outputDirectory": "code/.next",\n  "framework": "nextjs"\n}
+{
+  "github": {
+    "silent": true
+  },
+  "buildCommand": null,
+  "installCommand": null
+}
