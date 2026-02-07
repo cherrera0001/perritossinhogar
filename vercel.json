@@ -2,7 +2,6 @@
   "github": {
     "silent": true
   },
-  "rootDirectory": "code",
   "buildCommand": null,
   "installCommand": null
 }
