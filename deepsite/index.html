@@ -33,6 +33,15 @@
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="dns-prefetch" href="https://wa.me">
+    <link rel="preconnect" href="https://translate.google.com">
+    <link rel="preconnect" href="https://translate.googleapis.com">
+    
+    <!-- Hreflang Meta Tags for SEO Multi-language -->
+    <link rel="alternate" hreflang="es" href="https://perritossinhogar.cl" />
+    <link rel="alternate" hreflang="en" href="https://perritossinhogar.cl" />
+    <link rel="alternate" hreflang="fi" href="https://perritossinhogar.cl" />
+    <link rel="alternate" hreflang="pt" href="https://perritossinhogar.cl" />
+    <link rel="alternate" hreflang="x-default" href="https://perritossinhogar.cl" />
     
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
@@ -132,8 +141,25 @@
       }]
     }
     </script>
+    
+    <!-- Google Translate Widget -->
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'es',
+        includedLanguages: 'en,fi,pt,de,fr,it,nl,sv,no,da,pl,ru,ja,zh-CN,ar',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false,
+        multilanguagePage: true
+      }, 'google_translate_element');
+    }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body class="font-sans bg-gray-50 antialiased">
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element"></div>
+    
     <!-- Skip to main content for accessibility -->
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand-green focus:text-white focus:rounded-lg">
         Saltar al contenido principal

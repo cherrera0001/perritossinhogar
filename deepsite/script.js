@@ -348,6 +348,133 @@
   };
 
   /**
+   * Google Translate & WhatsApp Module - Single Responsibility
+   * Maneja la traducción dinámica de mensajes de WhatsApp
+   */
+  const GoogleTranslateWhatsApp = {
+    /**
+     * Función para detectar el idioma actual de Google Translate
+     * @returns {string} Código del idioma actual
+     */
+    getCurrentLanguage() {
+      var select = document.querySelector('.goog-te-combo');
+      if (select && select.value) {
+        return select.value;
+      }
+      return 'es';
+    },
+
+    /**
+     * Mensajes de WhatsApp en diferentes idiomas
+     */
+    whatsappMessages: {
+      'es': 'Hola, estoy interesado/a en ayudar a Perritos Sin Hogar. ¿Cómo puedo colaborar?',
+      'en': 'Hello, I am interested in helping Perritos Sin Hogar. How can I collaborate?',
+      'fi': 'Hei, olen kiinnostunut auttamaan Perritos Sin Hogar -järjestöä. Miten voin auttaa?',
+      'pt': 'Olá, estou interessado em ajudar Perritos Sin Hogar. Como posso colaborar?',
+      'de': 'Hallo, ich bin daran interessiert, Perritos Sin Hogar zu helfen. Wie kann ich mithelfen?',
+      'fr': 'Bonjour, je suis intéressé(e) par aider Perritos Sin Hogar. Comment puis-je collaborer?',
+      'it': 'Ciao, sono interessato ad aiutare Perritos Sin Hogar. Come posso collaborare?',
+      'nl': 'Hallo, ik ben geïnteresseerd om Perritos Sin Hogar te helpen. Hoe kan ik meewerken?',
+      'sv': 'Hej, jag är intresserad av att hjälpa Perritos Sin Hogar. Hur kan jag bidra?',
+      'no': 'Hei, jeg er interessert i å hjelpe Perritos Sin Hogar. Hvordan kan jeg samarbeide?',
+      'da': 'Hej, jeg er interesseret i at hjælpe Perritos Sin Hogar. Hvordan kan jeg samarbejde?',
+      'pl': 'Cześć, jestem zainteresowany pomocą Perritos Sin Hogar. Jak mogę współpracować?',
+      'ru': 'Здравствуйте, я заинтересован в помощи Perritos Sin Hogar. Как я могу помочь?',
+      'ja': 'こんにちは、Perritos Sin Hogarを支援することに興味があります。どのように協力できますか？',
+      'zh-CN': '你好，我有兴趣帮助Perritos Sin Hogar。我如何合作？',
+      'ar': 'مرحبا، أنا مهتم بمساعدة Perritos Sin Hogar. كيف يمكنني التعاون؟'
+    },
+
+    /**
+     * Abre WhatsApp con mensaje traducido
+     * @param {string} customMessage - Mensaje personalizado opcional
+     */
+    openWhatsApp(customMessage) {
+      var lang = this.getCurrentLanguage();
+      var message = customMessage || this.whatsappMessages[lang] || this.whatsappMessages['es'];
+      var phoneNumber = '56955338899';
+      var url = 'https://wa.me/' + phoneNumber + '?text=' + encodeURIComponent(message);
+      window.open(url, '_blank', 'noopener');
+    },
+
+    /**
+     * Actualiza todos los enlaces de WhatsApp para usar onclick
+     */
+    updateWhatsAppLinks() {
+      const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+      whatsappLinks.forEach(link => {
+        const originalHref = link.getAttribute('href');
+        
+        // Extraer mensaje personalizado si existe
+        const urlParams = new URL(originalHref).searchParams;
+        const customMessage = urlParams.get('text');
+        
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          // Si hay un mensaje personalizado, intentar traducirlo o usar el genérico
+          if (customMessage) {
+            // Para mensajes de donación, mantener el contexto
+            const lang = this.getCurrentLanguage();
+            let translatedMessage;
+            
+            if (customMessage.includes('5000') || customMessage.includes('donar')) {
+              const donationMessages = {
+                'es': 'Quiero donar $5000 para alimentar un perrito',
+                'en': 'I want to donate $5000 to feed a dog',
+                'fi': 'Haluan lahjoittaa $5000 koiran ruokkimiseen',
+                'pt': 'Quero doar $5000 para alimentar um cachorro',
+                'de': 'Ich möchte $5000 spenden, um einen Hund zu füttern',
+                'fr': 'Je veux donner $5000 pour nourrir un chien',
+                'it': 'Voglio donare $5000 per nutrire un cane'
+              };
+              translatedMessage = donationMessages[lang] || donationMessages['es'];
+            } else {
+              translatedMessage = this.whatsappMessages[lang] || this.whatsappMessages['es'];
+            }
+            
+            this.openWhatsApp(translatedMessage);
+          } else {
+            this.openWhatsApp();
+          }
+        });
+      });
+    },
+
+    /**
+     * Detecta el idioma del navegador y sugiere traducción
+     */
+    detectBrowserLanguage() {
+      window.addEventListener('load', () => {
+        var userLang = navigator.language || navigator.userLanguage;
+        var langCode = userLang.split('-')[0];
+        
+        // Si el idioma no es español, esperar a que Google Translate se cargue
+        if (langCode !== 'es') {
+          setTimeout(() => {
+            var translateElement = document.querySelector('.goog-te-combo');
+            if (translateElement) {
+              // Log en desarrollo
+              if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                console.log('[GoogleTranslateWhatsApp] Idioma del navegador detectado:', langCode);
+              }
+            }
+          }, 1500);
+        }
+      });
+    },
+
+    /**
+     * Inicializa el módulo
+     */
+    init() {
+      this.updateWhatsAppLinks();
+      this.detectBrowserLanguage();
+    }
+  };
+
+  /**
    * Main App - Dependency Injection
    * Inicializa todos los módulos
    */
@@ -374,6 +501,7 @@
       LazyLoad.init();
       ScrollAnimation.init();
       FAQ.init();
+      GoogleTranslateWhatsApp.init();
       Utils.updateCopyrightYear();
 
       // Log de inicialización en desarrollo
@@ -388,6 +516,6 @@
 
   // Exportar para testing (si es necesario)
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { Analytics, SectionViewTracking, SmoothScroll, LazyLoad, ScrollAnimation, FAQ, Utils };
+    module.exports = { Analytics, SectionViewTracking, SmoothScroll, LazyLoad, ScrollAnimation, FAQ, Utils, GoogleTranslateWhatsApp };
   }
 })();
