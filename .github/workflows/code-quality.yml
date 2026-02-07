@@ -29,6 +29,7 @@ jobs:
         with:
           node-version: "20"
           cache: "pnpm"
+          cache-dependency-path: './code/pnpm-lock.yaml'
 
       - name: Instalar dependencias
         working-directory: ./code
@@ -64,6 +65,7 @@ jobs:
         with:
           node-version: "20"
           cache: "pnpm"
+          cache-dependency-path: './code/pnpm-lock.yaml'
 
       - name: Instalar dependencias
         working-directory: ./code
@@ -99,6 +101,7 @@ jobs:
         with:
           node-version: "20"
           cache: "pnpm"
+          cache-dependency-path: './code/pnpm-lock.yaml'
 
       - name: Instalar dependencias
         working-directory: ./code
@@ -116,4 +119,3 @@ jobs:
             exit 1
           }
           echo "✅ Compilación exitosa"
-
