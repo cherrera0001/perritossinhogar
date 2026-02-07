@@ -1,9 +1,9 @@
 {
-  "buildCommand": "cd code && npm install && npm run build",
+  "buildCommand": "cd code && pnpm run build",
   "outputDirectory": "code/.next",
   "framework": "nextjs",
-  "installCommand": "cd code && npm install",
-  "devCommand": "cd code && npm run dev",
+  "installCommand": "cd code && pnpm install --frozen-lockfile",
+  "devCommand": "cd code && pnpm run dev",
   "headers": [
     {
       "source": "/(.*)",
