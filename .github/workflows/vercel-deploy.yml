@@ -1,88 +1,19 @@
-name: Vercel Deployment with Telemetry
+name: Vercel Deployment
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch:
-
-env:
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: 📥 Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - name: 📦 Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: 📦 Install Vercel CLI
-        run: npm install --global vercel@latest
-
-      - name: 🔍 Pull Vercel Environment Information
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-        working-directory: ./code
-
-      - name: 🏗️ Build Project Artifacts
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-        working-directory: ./code
-
-      - name: 📊 Telemetry - Build Success
-        if: success()
-        run: |
-          echo "✅ Build completed successfully"
-          echo "Timestamp: $(date -u +"%Y-%m-%dT%H:%M:%SZ")"
-          echo "Commit: ${{ github.sha }}"
-          echo "Branch: ${{ github.ref_name }}"
-
-      - name: 📊 Telemetry - Build Failure
-        if: failure()
-        run: |
-          echo "❌ Build failed"
-          echo "Timestamp: $(date -u +"%Y-%m-%dT%H:%M:%SZ")"
-          echo "Commit: ${{ github.sha }}"
-          echo "Branch: ${{ github.ref_name }}"
-          echo "Check logs above for details"
-
-      - name: 🚀 Deploy to Vercel
-        id: deploy
-        run: |
-          url=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }} 2>&1 | tee deploy.log | grep -oP 'https://[^"]+' | tail -1)
-          echo "deployment_url=$url" >> $GITHUB_OUTPUT
-          echo "Deployment URL: $url"
-        working-directory: ./code
-
-      - name: 📊 Telemetry - Deployment Success
-        if: success()
-        run: |
-          echo "✅ Deployment completed successfully"
-          echo "URL: ${{ steps.deploy.outputs.deployment_url }}"
-          echo "Timestamp: $(date -u +"%Y-%m-%dT%H:%M:%SZ")"
-
-      - name: 📊 Telemetry - Deployment Failure
-        if: failure()
-        run: |
-          echo "❌ Deployment failed"
-          echo "Timestamp: $(date -u +"%Y-%m-%dT%H:%M:%SZ")"
-          cat code/deploy.log || echo "No deploy log available"
-
-      - name: 💬 Comment PR with Deployment URL
-        if: github.event_name == 'pull_request' && success()
-        uses: actions/github-script@v7
-        with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '🚀 Deployed to Vercel: ${{ steps.deploy.outputs.deployment_url }}'
-            })
+      - name: Deploy to Vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN_dog }}
+        run: vercel --prod
