@@ -13,6 +13,7 @@ Sitio web oficial para adopcion y rescate de perros en Chile.
 ```
 app/               # App Router de Next.js
 components/        # Componentes React
+docs/              # Documentacion del proyecto
 hooks/             # Hooks reutilizables
 lib/               # Utilidades y helpers
 public/            # Archivos estaticos
@@ -52,6 +53,7 @@ Official website for dog adoption and rescue in Chile.
 ```
 app/               # Next.js App Router
 components/        # React components
+docs/              # Project documentation
 hooks/             # Reusable hooks
 lib/               # Utilities and helpers
 public/            # Static assets
