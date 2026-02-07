@@ -56,3 +56,33 @@ code/
 └── styles/          # Estilos globales
 ```
 
+## Notas de Dependencias
+
+### Override para vaul + React 19
+
+El proyecto usa `vaul@0.9.9` para el componente Drawer, pero esta versión solo declara soporte oficial para React 16, 17 y 18 en sus `peerDependencies`. Sin embargo, vaul **sí funciona correctamente con React 19** porque:
+
+- Solo depende de `@radix-ui/react-dialog`
+- `@radix-ui/react-dialog@1.1.4` ya soporta React 19
+- El problema es solo la declaración de `peerDependencies` en el package.json de vaul
+
+**Solución aplicada:**
+
+Se agregó un `overrides` en `package.json` para forzar que vaul acepte React 19:
+
+```json
+"overrides": {
+  "vaul": {
+    "react": "19.2.1",
+    "react-dom": "19.2.1"
+  }
+}
+```
+
+Esta solución es temporal y profesional. Cuando vaul actualice su package.json para soportar React 19 oficialmente, se puede remover este override.
+
+**Verificar futuras versiones de vaul:**
+```bash
+npm view vaul peerDependencies
+```
+
