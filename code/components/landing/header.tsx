@@ -1,6 +1,6 @@
 "use client"
 
-import { Heart } from "lucide-react"
+import { Globe, Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { trackEvent } from "@/lib/analytics"
 
@@ -17,7 +17,7 @@ export function Header() {
           <h1 className="text-xl font-semibold text-gray-900">Perritos Sin Hogar</h1>
         </div>
         <nav aria-label="Navegación principal" role="navigation">
-          <ul className="flex items-center gap-6">
+          <ul className="flex items-center gap-4">
             <li className="hidden md:block">
               <a
                 href="#mision"
@@ -57,6 +57,13 @@ export function Header() {
                   Donar
                 </a>
               </Button>
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="flex items-center gap-1 text-xs uppercase tracking-wide text-gray-500">
+                <Globe className="h-4 w-4" aria-hidden="true" />
+                Idioma
+              </span>
+              <div className="gtranslate_wrapper" aria-label="Selector de idioma"></div>
             </li>
           </ul>
         </nav>

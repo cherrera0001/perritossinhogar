@@ -53,8 +53,16 @@ code/
 │   └── ui/          # Componentes de UI reutilizables
 ├── lib/             # Utilidades y helpers
 ├── public/          # Archivos estáticos
-└── styles/          # Estilos globales
+└── hooks/           # Hooks reutilizables
 ```
+
+## Idiomas
+
+El sitio incorpora un selector de idioma con GTranslate para ofrecer traducción automática a:
+
+- Español (predeterminado)
+- Inglés
+- Chino (simplificado)
 
 ## Notas de Dependencias
 

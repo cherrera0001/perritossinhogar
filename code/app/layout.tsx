@@ -1,5 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
+import Script from "next/script"
 import { Geist, Geist_Mono } from "next/font/google"
 import { AnalyticsWrapper } from "@/components/analytics-wrapper"
 import "./globals.css"
@@ -34,6 +35,13 @@ export default function RootLayout({
   return (
     <html lang="es-CL">
       <body className={`${geist.variable} ${geistMono.variable} font-sans antialiased bg-gray-50`}>
+        <Script id="gtranslate-settings" strategy="beforeInteractive">
+          {`window.gtranslateSettings = {"default_language":"es","languages":["es","en","zh-CN"],"wrapper_selector":".gtranslate_wrapper"};`}
+        </Script>
+        <Script
+          src="https://cdn.gtranslate.net/widgets/latest/float.js"
+          strategy="afterInteractive"
+        />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand-green focus:text-white focus:rounded-lg"

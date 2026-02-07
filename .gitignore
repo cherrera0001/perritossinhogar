@@ -59,9 +59,6 @@ code.zip
 *.pdf
 owasp-top-10.pdf
 
-# Carpetas de versiones antiguas
-deepsite/
-
 # Cache
 .cache/
 .parcel-cache/

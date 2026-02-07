@@ -159,6 +159,45 @@
   }
 }
 
+.gtranslate_wrapper select {
+  appearance: none;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  color: #111827;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  padding: 0.35rem 1.75rem 0.35rem 0.6rem;
+  min-height: 2.25rem;
+}
+
+.gtranslate_wrapper select:focus {
+  outline: 2px solid rgba(46, 125, 50, 0.4);
+  outline-offset: 2px;
+}
+
+.gtranslate_wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  padding: 0.15rem 0.35rem;
+}
+
+.gtranslate_wrapper::after {
+  content: "";
+  position: absolute;
+  right: 0.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid #6b7280;
+  pointer-events: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-on-scroll {
     opacity: 1;
