@@ -198,6 +198,22 @@
   pointer-events: none;
 }
 
+.gt_float_switcher {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  .gtranslate_wrapper {
+    padding: 0.1rem 0.3rem;
+  }
+
+  .gtranslate_wrapper select {
+    font-size: 0.75rem;
+    padding-right: 1.4rem;
+    min-height: 2rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-on-scroll {
     opacity: 1;

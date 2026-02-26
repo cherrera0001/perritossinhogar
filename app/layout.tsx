@@ -36,10 +36,10 @@ export default function RootLayout({
     <html lang="es-CL">
       <body className={`${geist.variable} ${geistMono.variable} font-sans antialiased bg-gray-50`}>
         <Script id="gtranslate-settings" strategy="beforeInteractive">
-          {`window.gtranslateSettings = {"default_language":"es","languages":["es","en","zh-CN"],"wrapper_selector":".gtranslate_wrapper"};`}
+          {`window.gtranslateSettings = {"default_language":"es","languages":["es","en","zh-CN"],"wrapper_selector":".gtranslate_wrapper","flag_size":24,"flag_style":"3d"};`}
         </Script>
         <Script
-          src="https://cdn.gtranslate.net/widgets/latest/float.js"
+          src="https://cdn.gtranslate.net/widgets/latest/flags.js"
           strategy="afterInteractive"
         />
         <a

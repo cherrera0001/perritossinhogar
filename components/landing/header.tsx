@@ -1,8 +1,9 @@
 "use client"
 
-import { Globe, Heart } from "lucide-react"
+import { Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { trackEvent } from "@/lib/analytics"
+import { LanguageSwitcher } from "@/components/landing/language-switcher"
 
 export function Header() {
   const handleDonateClick = () => {
@@ -58,13 +59,7 @@ export function Header() {
                 </a>
               </Button>
             </li>
-            <li className="flex items-center gap-2">
-              <span className="flex items-center gap-1 text-xs uppercase tracking-wide text-gray-500">
-                <Globe className="h-4 w-4" aria-hidden="true" />
-                Idioma
-              </span>
-              <div className="gtranslate_wrapper" aria-label="Selector de idioma"></div>
-            </li>
+            <LanguageSwitcher />
           </ul>
         </nav>
       </div>
