@@ -7,6 +7,7 @@
   /* Added brand colors for Perritos Sin Hogar */
   --brand-green: #2e7d32;
   --brand-green-dark: #1b5e20;
+  --brand-green-light: #e8f5e9;
   --brand-yellow: #f7d154;
   --brand-yellow-dark: #f5c518;
   --brand-violet: #6c5ce7;
@@ -83,12 +84,14 @@
 }
 
 @theme inline {
-  --font-sans: "Geist", "Geist Fallback";
-  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --font-heading: "Nunito", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-sans: "Inter", sans-serif;
 
   /* Added brand color tokens */
   --color-brand-green: var(--brand-green);
   --color-brand-green-dark: var(--brand-green-dark);
+  --color-brand-green-light: var(--brand-green-light);
   --color-brand-yellow: var(--brand-yellow);
   --color-brand-yellow-dark: var(--brand-yellow-dark);
   --color-brand-violet: var(--brand-violet);
@@ -145,79 +148,12 @@
     scroll-behavior: smooth;
   }
 
-  .animate-on-scroll {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    transition-delay: var(--animate-delay, 0s);
-  }
-
-  .animate-on-scroll.is-visible,
-  .animate-on-scroll.motion-safe-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.gtranslate_wrapper select {
-  appearance: none;
-  background-color: #ffffff;
-  border: 1px solid #d1d5db;
-  border-radius: 0.5rem;
-  color: #111827;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  padding: 0.35rem 1.75rem 0.35rem 0.6rem;
-  min-height: 2.25rem;
-}
-
-.gtranslate_wrapper select:focus {
-  outline: 2px solid rgba(46, 125, 50, 0.4);
-  outline-offset: 2px;
-}
-
-.gtranslate_wrapper {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 999px;
-  padding: 0.15rem 0.35rem;
-}
-
-.gtranslate_wrapper::after {
-  content: "";
-  position: absolute;
-  right: 0.7rem;
-  top: 50%;
-  transform: translateY(-50%);
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 5px solid #6b7280;
-  pointer-events: none;
-}
-
-.gt_float_switcher {
-  display: none !important;
-}
-
-@media (max-width: 640px) {
-  .gtranslate_wrapper {
-    padding: 0.1rem 0.3rem;
-  }
-
-  .gtranslate_wrapper select {
-    font-size: 0.75rem;
-    padding-right: 1.4rem;
-    min-height: 2rem;
-  }
+  /* Animations handled by Framer Motion via AnimateOnScroll component */
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-on-scroll {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }

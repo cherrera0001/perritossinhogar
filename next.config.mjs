@@ -6,7 +6,7 @@ const nextConfig = {
     ignoreBuildErrors: false,
   },
   images: {
-    unoptimized: true,
+    formats: ["image/avif", "image/webp"],
   },
   // Configuración para exportación estática (GitHub Pages)
   output: process.env.EXPORT_STATIC === 'true' ? 'export' : undefined,
@@ -19,6 +19,10 @@ const nextConfig = {
         source: '/:path*',
         headers: [
           {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; frame-src https://docs.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://docs.google.com;"
+          },
+          {
             key: 'X-DNS-Prefetch-Control',
             value: 'on'
           },
@@ -28,15 +32,11 @@ const nextConfig = {
           },
           {
             key: 'X-Frame-Options',
-            value: 'SAMEORIGIN'
+            value: 'DENY'
           },
           {
             key: 'X-Content-Type-Options',
             value: 'nosniff'
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block'
           },
           {
             key: 'Referrer-Policy',

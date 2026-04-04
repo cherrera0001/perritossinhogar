@@ -1,30 +1,55 @@
 import type React from "react"
 import type { Metadata } from "next"
-import Script from "next/script"
-import { Geist, Geist_Mono } from "next/font/google"
+import { Nunito, Inter } from "next/font/google"
 import { AnalyticsWrapper } from "@/components/analytics-wrapper"
 import "./globals.css"
 
-const geist = Geist({ 
+const nunito = Nunito({
   subsets: ["latin"],
-  variable: "--font-geist",
+  variable: "--font-heading",
   display: "swap",
+  weight: ["700", "800"],
 })
 
-const geistMono = Geist_Mono({ 
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-geist-mono",
+  variable: "--font-body",
   display: "swap",
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://perritossinhogar.cl'),
+  metadataBase: new URL("https://perritossinhogar.cl"),
   title: {
-    default: "Perritos Sin Hogar",
-    template: "%s | Perritos Sin Hogar"
+    default: "Perritos Sin Hogar: Adopta, Dona y Cambia Vidas | Rescate Animal Chile",
+    template: "%s | Perritos Sin Hogar",
   },
-  description: "Rescatamos perros y los conectamos con familias",
-  generator: "v0.app",
+  description:
+    "Adopta un perrito rescatado en Chile. Proceso 100% online, transparente y acompanado. +200 perritos rescatados, +150 familias felices. Dona desde $5.000.",
+  keywords: [
+    "adopcion perros chile",
+    "adoptar perro santiago",
+    "fundacion rescate animal chile",
+    "perritos en adopcion",
+    "donar fundacion perros chile",
+  ],
+  alternates: { canonical: "https://perritossinhogar.cl" },
+  openGraph: {
+    title: "Perritos Sin Hogar: Adopta, Dona y Cambia Vidas",
+    description:
+      "Adopta un perrito rescatado en Chile. +200 perritos rescatados, +150 familias felices.",
+    url: "https://perritossinhogar.cl",
+    siteName: "Perritos Sin Hogar",
+    locale: "es_CL",
+    type: "website",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Perritos Sin Hogar" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Perritos Sin Hogar: Adopta, Dona y Cambia Vidas",
+    description: "Rescatamos perros y los conectamos con familias en Chile.",
+    images: ["/og-image.jpg"],
+  },
+  robots: { index: true, follow: true },
 }
 
 export default function RootLayout({
@@ -34,14 +59,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es-CL">
-      <body className={`${geist.variable} ${geistMono.variable} font-sans antialiased bg-gray-50`}>
-        <Script id="gtranslate-settings" strategy="beforeInteractive">
-          {`window.gtranslateSettings = {"default_language":"es","languages":["es","en","zh-CN"],"wrapper_selector":".gtranslate_wrapper","flag_size":24,"flag_style":"3d"};`}
-        </Script>
-        <Script
-          src="https://cdn.gtranslate.net/widgets/latest/flags.js"
-          strategy="afterInteractive"
-        />
+      <body
+        className={`${nunito.variable} ${inter.variable} font-body antialiased bg-gray-50`}
+      >
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand-green focus:text-white focus:rounded-lg"

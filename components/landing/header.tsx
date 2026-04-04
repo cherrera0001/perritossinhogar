@@ -3,7 +3,6 @@
 import { Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { trackEvent } from "@/lib/analytics"
-import { LanguageSwitcher } from "@/components/landing/language-switcher"
 
 export function Header() {
   const handleDonateClick = () => {
@@ -59,7 +58,6 @@ export function Header() {
                 </a>
               </Button>
             </li>
-            <LanguageSwitcher />
           </ul>
         </nav>
       </div>
