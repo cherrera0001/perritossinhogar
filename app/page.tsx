@@ -45,42 +45,42 @@ const faqJsonLd = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "Como funciona el proceso de adopcion?",
+      name: "¿Cómo funciona el proceso de adopción?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "El proceso incluye una entrevista, visita al hogar y periodo de prueba. Nos aseguramos de que tanto el perrito como la familia sean compatibles.",
+        text: "El proceso incluye una entrevista, visita al hogar y período de prueba. Nos aseguramos de que tanto el perrito como la familia sean compatibles.",
       },
     },
     {
       "@type": "Question",
-      name: "En que se usan las donaciones?",
+      name: "¿En qué se usan las donaciones?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Las donaciones se usan para alimento, atencion veterinaria, esterilizacion, vacunas y cuidados basicos de los perritos rescatados.",
+        text: "Las donaciones se usan para alimento, atención veterinaria, esterilización, vacunas y cuidados básicos de los perritos rescatados.",
       },
     },
     {
       "@type": "Question",
-      name: "Puedo ser voluntario sin experiencia?",
+      name: "¿Puedo ser voluntario sin experiencia?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Si, te capacitamos en todo lo necesario. Necesitamos ayuda en rescates, eventos de adopcion, transporte y difusion en redes sociales.",
+        text: "Sí, te capacitamos en todo lo necesario. Necesitamos ayuda en rescates, eventos de adopción, transporte y difusión en redes sociales.",
       },
     },
     {
       "@type": "Question",
-      name: "Cuanto cuesta adoptar?",
+      name: "¿Cuánto cuesta adoptar?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "La adopcion tiene un costo simbolico que cubre parte de los gastos veterinarios. Todos los perritos estan esterilizados, vacunados y desparasitados.",
+        text: "La adopción tiene un costo simbólico que cubre parte de los gastos veterinarios. Todos los perritos están esterilizados, vacunados y desparasitados.",
       },
     },
     {
       "@type": "Question",
-      name: "Hacen seguimiento despues de la adopcion?",
+      name: "¿Hacen seguimiento después de la adopción?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Si, hacemos seguimiento periodico para asegurarnos de que todo vaya bien y ofrecemos apoyo continuo a las familias adoptantes.",
+        text: "Sí, hacemos seguimiento periódico para asegurarnos de que todo vaya bien y ofrecemos apoyo continuo a las familias adoptantes.",
       },
     },
   ],
