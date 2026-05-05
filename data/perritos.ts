@@ -213,12 +213,8 @@ export const perritos: Perrito[] = [
     personality: ["Curiosa", "Cariñosa", "Valiente"],
     gallery: [
       {
-        src: "/perritos/susanita/portada.jpg",
-        alt: "Susanita en el refugio durante su rescate",
-      },
-      {
         src: "/perritos/susanita/galeria-1.jpg",
-        alt: "Susanita descansando junto a su casita",
+        alt: "Susanita descansando junto a su casita durante el rescate",
       },
       { src: "/perritos/susanita/galeria-2.jpg", alt: "Susanita mirando a la cámara" },
       { src: "/perritos/susanita/galeria-3.jpg", alt: "Susanita tranquila en el refugio" },
