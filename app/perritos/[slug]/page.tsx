@@ -8,6 +8,7 @@ import { perritos, getPerritoBySlug } from "@/data/perritos"
 import { PerritoGallery } from "@/components/perritos/perrito-gallery"
 import { PerritoVideo } from "@/components/perritos/perrito-video"
 import { AdoptaCTA } from "@/components/perritos/adopt-cta"
+import { AdoptionContactPanel } from "@/components/perritos/adoption-contact-panel"
 
 // Deshabilita slugs que no estén en generateStaticParams → 404 automático
 export const dynamicParams = false
@@ -197,9 +198,13 @@ export default async function PerritoDetailPage({
                 </div>
               </div>
 
-              {/* CTA inline — visible solo en desktop */}
+              {/* Panel completo — visible solo en desktop */}
               <div className="hidden md:block">
-                <AdoptaCTA petName={pet.name} petSlug={pet.slug} />
+                <AdoptionContactPanel
+                  petName={pet.name}
+                  petSlug={pet.slug}
+                  source="detail"
+                />
               </div>
             </div>
           </div>
@@ -222,9 +227,13 @@ export default async function PerritoDetailPage({
             </div>
           )}
 
-          {/* CTA inline mobile (complementa el sticky) */}
+          {/* Panel completo mobile — complementa el sticky */}
           <div className="mt-10 md:hidden">
-            <AdoptaCTA petName={pet.name} petSlug={pet.slug} />
+            <AdoptionContactPanel
+              petName={pet.name}
+              petSlug={pet.slug}
+              source="detail"
+            />
           </div>
         </div>
       </main>

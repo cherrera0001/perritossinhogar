@@ -240,6 +240,7 @@ export function getPerritoBySlug(slug: string): Perrito | undefined {
   return perritos.find((p) => p.slug === slug)
 }
 
-export function getFeaturedPerritos(limit = 6): Perrito[] {
-  return perritos.filter((p) => p.featured && p.available).slice(0, limit)
+export function getFeaturedPerritos(limit?: number): Perrito[] {
+  const available = perritos.filter((p) => p.featured && p.available)
+  return limit !== undefined ? available.slice(0, limit) : available
 }

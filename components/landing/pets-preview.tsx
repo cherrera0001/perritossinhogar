@@ -18,7 +18,7 @@ const ENERGY_LABELS: Record<string, string> = {
 }
 
 export function PetsPreview() {
-  const featured = getFeaturedPerritos(6)
+  const featured = getFeaturedPerritos()
 
   return (
     <section id="adopta" className="py-16 md:py-20 bg-gray-50 scroll-mt-24">
