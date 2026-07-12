@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | Perritos Sin Hogar",
   },
   description:
-    "Adopta un perrito rescatado en Chile. Proceso 100% online, transparente y acompanado. +200 perritos rescatados, +150 familias felices. Dona desde $5.000.",
+    "Adopta un perrito rescatado en Chile. Proceso 100% online, transparente y acompanado. Dona desde $5.000.",
   keywords: [
     "adopcion perros chile",
     "adoptar perro santiago",
@@ -35,8 +35,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://perritossinhogar.cl" },
   openGraph: {
     title: "Perritos Sin Hogar: Adopta, Dona y Cambia Vidas",
-    description:
-      "Adopta un perrito rescatado en Chile. +200 perritos rescatados, +150 familias felices.",
+    description: "Adopta un perrito rescatado en Chile. Rescate real, sin intermediarios.",
     url: "https://perritossinhogar.cl",
     siteName: "Perritos Sin Hogar",
     locale: "es_CL",

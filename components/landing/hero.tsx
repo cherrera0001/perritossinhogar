@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Heart, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -31,11 +30,10 @@ export function Hero() {
     <section className="relative overflow-hidden bg-gradient-to-r from-brand-green to-brand-violet text-white py-16 md:py-24 scroll-mt-24">
       <div className="absolute inset-0 bg-black/10" aria-hidden="true" />
       <div className="relative z-10 container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-          <div className="md:w-1/2 space-y-6">
+        <div className="max-w-3xl mx-auto space-y-6">
             <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold">
               <span className="w-2 h-2 rounded-full bg-brand-yellow animate-pulse" aria-hidden="true" />
-              15 perritos rescatados este mes necesitan hogar
+              Perritos en busqueda activa de hogar responsable
             </div>
 
             <h1 className="text-4xl md:text-6xl font-bold text-balance leading-tight" data-variant="B3">
@@ -51,13 +49,7 @@ export function Hero() {
             <div className="flex flex-wrap items-center gap-4 text-sm bg-white/10 backdrop-blur-sm rounded-lg px-4 py-3">
               <div className="flex items-center gap-2">
                 <Star className="w-5 h-5 text-brand-yellow" aria-hidden="true" />
-                <span>
-                  <strong>4.9/5</strong> confianza
-                </span>
-              </div>
-              <div className="hidden sm:block h-4 w-px bg-white/30" aria-hidden="true" />
-              <div>
-                <strong>150 familias</strong> felices en 2024
+                <span>Datos reales y verificables de cada perrito</span>
               </div>
             </div>
 
@@ -95,18 +87,6 @@ export function Hero() {
                 Ver perritos disponibles <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
               </Link>
             </div>
-          </div>
-
-          <div className="md:w-1/2">
-            <Image
-              src="/perro-rescatado-feliz-buscando-familia.jpg"
-              alt="Perro rescatado feliz buscando una familia amorosa en Chile"
-              width={600}
-              height={400}
-              className="rounded-2xl shadow-2xl w-full h-auto"
-              priority
-            />
-          </div>
         </div>
       </div>
     </section>

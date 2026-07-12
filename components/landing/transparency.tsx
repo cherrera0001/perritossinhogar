@@ -1,52 +1,31 @@
-import { TrendingUp, Stethoscope, UtensilsCrossed, Heart, Dog, Home } from "lucide-react"
-import data from "@/data/transparency.json"
+import { Dog, Home, CheckCircle2 } from "lucide-react"
+import { perritos } from "@/data/perritos"
 
-function formatCLP(amount: number) {
-  return `$${amount.toLocaleString("es-CL")}`
-}
+const rescues = perritos.length
+const adoptions = perritos.filter((p) => !p.available).length
+const petsInCare = perritos.filter((p) => p.available).length
 
 const metrics = [
   {
     icon: Dog,
-    value: data.rescues,
+    value: rescues,
     label: "Perritos rescatados",
     color: "text-brand-green",
     bg: "bg-brand-green/10",
   },
   {
     icon: Home,
-    value: data.adoptions,
+    value: adoptions,
     label: "Adopciones completadas",
     color: "text-brand-violet",
     bg: "bg-brand-violet/10",
   },
   {
-    icon: Stethoscope,
-    value: formatCLP(data.veterinaryCost),
-    label: "Gastos veterinarios",
-    color: "text-blue-600",
-    bg: "bg-blue-50",
-  },
-  {
-    icon: UtensilsCrossed,
-    value: formatCLP(data.foodCost),
-    label: "Alimentación",
-    color: "text-amber-600",
+    icon: CheckCircle2,
+    value: petsInCare,
+    label: "Perritos en cuidado ahora",
+    color: "text-brand-yellow",
     bg: "bg-amber-50",
-  },
-  {
-    icon: Heart,
-    value: formatCLP(data.totalDonations),
-    label: "Donaciones recibidas",
-    color: "text-brand-green",
-    bg: "bg-brand-green/10",
-  },
-  {
-    icon: TrendingUp,
-    value: data.petsInCare,
-    label: "Perritos en cuidado",
-    color: "text-brand-violet",
-    bg: "bg-brand-violet/10",
   },
 ]
 
@@ -59,8 +38,8 @@ export function Transparency() {
             Transparencia total
           </h2>
           <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto text-pretty">
-            Cada peso que donas se registra y se publica. Sin excepciones. Datos de{" "}
-            <strong>{data.monthLabel}</strong>.
+            Mostramos únicamente datos verificables: la cantidad real de perritos que estamos
+            rescatando y su estado actual.
           </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
@@ -85,7 +64,7 @@ export function Transparency() {
         </div>
         <div className="text-center mt-8">
           <p className="text-sm text-gray-500">
-            Publicamos estos números cada mes. Tu confianza es nuestra prioridad.
+            Estos números se actualizan directamente desde nuestro registro de perritos.
           </p>
         </div>
       </div>

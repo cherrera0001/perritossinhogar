@@ -23,7 +23,6 @@ const organizationJsonLd = {
   logo: "https://perritossinhogar.cl/logo.png",
   description:
     "Rescatamos perros abandonados y los conectamos con familias responsables en Chile",
-  foundingDate: "2020",
   contactPoint: {
     "@type": "ContactPoint",
     telephone: "+56-9-5533-8899",

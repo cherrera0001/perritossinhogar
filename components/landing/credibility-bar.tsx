@@ -1,21 +1,27 @@
+import { perritos } from "@/data/perritos"
+
 export function CredibilityBar() {
+  const enCuidado = perritos.length
+  const disponibles = perritos.filter((p) => p.available).length
+  const adopciones = perritos.filter((p) => !p.available).length
+
   const stats = [
     {
-      value: "+200",
-      label: "Perros rescatados",
-      helper: "Desde 2020",
+      value: String(enCuidado),
+      label: enCuidado === 1 ? "Perrito en cuidado" : "Perritos en cuidado",
+      helper: "Datos reales, actualizados",
       color: "text-brand-green",
     },
     {
-      value: "+150",
-      label: "Familias felices",
-      helper: "Adoptantes verificados",
+      value: String(disponibles),
+      label: disponibles === 1 ? "Disponible para adopción" : "Disponibles para adopción",
+      helper: "Ahora mismo",
       color: "text-brand-violet",
     },
     {
-      value: "5 años",
-      label: "Rescatando en Chile",
-      helper: "Operando continuamente",
+      value: String(adopciones),
+      label: adopciones === 1 ? "Adopción completada" : "Adopciones completadas",
+      helper: "Registro público",
       color: "text-brand-yellow",
     },
   ]
