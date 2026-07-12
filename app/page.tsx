@@ -8,9 +8,7 @@ import { AdoptionForm } from "@/components/landing/adoption-form"
 import { Mission } from "@/components/landing/mission"
 import { Impact } from "@/components/landing/impact"
 import { DonationCTA } from "@/components/landing/donation-cta"
-import { Testimonial } from "@/components/landing/testimonial"
 import { HowToHelp } from "@/components/landing/how-to-help"
-import { Stories } from "@/components/landing/stories"
 import { Transparency } from "@/components/landing/transparency"
 import { FAQ } from "@/components/landing/faq"
 import { FinalCTA } from "@/components/landing/final-cta"
@@ -107,8 +105,6 @@ export default function Home() {
           <Mission />
           <Impact />
           <DonationCTA />
-          <Stories />
-          <Testimonial />
           <Transparency />
           <HowToHelp />
           <FAQ />

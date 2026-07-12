@@ -21,7 +21,7 @@ export function Hero() {
     trackEvent("cta_navigation_click", {
       section: "hero",
       variant: "B3-secondary",
-      destination: "historias",
+      destination: "adopta",
       element: "a",
       text: "Ver perritos disponibles",
     })
@@ -86,10 +86,10 @@ export function Hero() {
               </Button>
 
               <Link
-                href="#historias"
+                href="#adopta"
                 onClick={handleStoriesClick}
                 className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border-2 border-white/50 text-white font-semibold px-6 py-4 rounded-lg transition-all min-h-[60px] flex items-center justify-center focus:outline-none focus:ring-4 focus:ring-white/50"
-                aria-label="Ver historias de perritos disponibles para adopción"
+                aria-label="Ver perritos disponibles para adopción"
                 data-variant="B3-secondary"
               >
                 Ver perritos disponibles <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />

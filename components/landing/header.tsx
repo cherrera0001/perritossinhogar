@@ -36,10 +36,10 @@ export function Header() {
             </li>
             <li className="hidden md:block">
               <a
-                href="#testimonios"
+                href="#adopta"
                 className="text-gray-700 hover:text-brand-green transition-colors focus:outline-none focus:ring-2 focus:ring-brand-green focus:ring-offset-2 rounded-sm"
               >
-                Testimonios
+                Adopta
               </a>
             </li>
             <li>
