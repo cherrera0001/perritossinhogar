@@ -33,7 +33,7 @@ export function Hero() {
         <div className="max-w-3xl mx-auto space-y-6">
             <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold">
               <span className="w-2 h-2 rounded-full bg-brand-yellow animate-pulse" aria-hidden="true" />
-              Perritos en busqueda activa de hogar responsable
+              Perritos en búsqueda activa de hogar responsable
             </div>
 
             <h1 className="text-4xl md:text-6xl font-bold text-balance leading-tight" data-variant="B3">

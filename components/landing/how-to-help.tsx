@@ -19,7 +19,7 @@ const ways = [
   {
     icon: Heart,
     title: "Adoptar",
-    description: "Dales un hogar permanente. Todos nuestros perritos están esterilizados y vacunados.",
+    description: "Dales un hogar permanente. Nuestros perritos están vacunados y desparasitados.",
     cta: "Ver perritos",
     href: "https://wa.me/56955338899?text=Quiero%20adoptar%20un%20perrito",
     iconClass: "bg-brand-violet/10 text-brand-violet",

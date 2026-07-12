@@ -73,9 +73,7 @@ export function Footer() {
           <p className="text-gray-500 text-sm">
             © {new Date().getFullYear()} Perritos Sin Hogar. Todos los derechos reservados.
           </p>
-          <p className="text-gray-600 text-xs mt-2">
-            Somos una organización sin fines de lucro. Contenido informativo.
-          </p>
+          <p className="text-gray-600 text-xs mt-2">Contenido informativo.</p>
         </div>
       </div>
     </footer>

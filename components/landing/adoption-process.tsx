@@ -13,7 +13,7 @@ const steps = [
     step: "2",
     title: "Llena el formulario",
     description:
-      "Completa el formulario de adopción en 5 minutos. Sin papeles, todo online. Te contactamos en 24-48 horas.",
+      "Completa el formulario de adopción en 5 minutos. Sin papeles, todo online. Te contactamos en 24–48 horas.",
   },
   {
     icon: Home,
@@ -56,7 +56,8 @@ export function AdoptionProcess() {
         </div>
         <div className="text-center mt-8">
           <p className="text-sm text-gray-500">
-            Todos nuestros perritos están esterilizados, vacunados y desparasitados.
+            Todos nuestros perritos están vacunados y desparasitados; la esterilización se
+            coordina como parte del proceso.
           </p>
         </div>
       </div>

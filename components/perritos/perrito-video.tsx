@@ -17,7 +17,7 @@ export function PerritoVideo({ src, poster, petName }: PerritoVideoProps) {
           preload="metadata"
           poster={poster}
           playsInline
-          aria-label={`Video de ${petName} en el refugio`}
+          aria-label={`Video de ${petName}`}
         >
           <source src={src} type="video/mp4" />
           <p className="text-white text-sm p-4">

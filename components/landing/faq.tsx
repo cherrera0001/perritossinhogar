@@ -22,7 +22,7 @@ const faqs = [
   {
     question: "¿Cuánto cuesta adoptar?",
     answer:
-      "La adopción tiene un costo simbólico que cubre parte de los gastos veterinarios. Todos los perritos están esterilizados, vacunados y desparasitados.",
+      "La adopción tiene un costo simbólico que cubre parte de los gastos veterinarios. Todos nuestros perritos están vacunados y desparasitados; la esterilización se coordina como parte del proceso.",
   },
   {
     question: "¿Hacen seguimiento después de la adopción?",

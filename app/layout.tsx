@@ -24,13 +24,13 @@ export const metadata: Metadata = {
     template: "%s | Perritos Sin Hogar",
   },
   description:
-    "Adopta un perrito rescatado en Chile. Proceso 100% online, transparente y acompanado. Dona desde $5.000.",
+    "Adopta un perrito rescatado en Chile. Proceso 100% online, transparente y acompañado. Dona desde $5.000.",
   keywords: [
-    "adopcion perros chile",
+    "adopción perros chile",
     "adoptar perro santiago",
-    "fundacion rescate animal chile",
-    "perritos en adopcion",
-    "donar fundacion perros chile",
+    "rescate animal chile",
+    "perritos en adopción",
+    "donar rescate de perros chile",
   ],
   alternates: { canonical: "https://perritossinhogar.cl" },
   openGraph: {
